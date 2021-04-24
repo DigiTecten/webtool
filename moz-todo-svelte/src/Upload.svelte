@@ -12,26 +12,18 @@
 	}
 </script>
 <main>   
-    <label for="avatar">Upload a picture:</label>
+    <label for="uploadInput">Laden Sie ein Dokument (PDF, PNG):</label>
     <input
-        accept="image/png, image/jpeg"
+        accept="image/png,application/pdf"
         bind:files
-        id="avatar"
-        name="avatar"
-        type="file"
-    />
-
-    <label for="many">Upload multiple files of any type:</label>
-    <input
-        bind:files
-        id="many"
-        multiple
+        id="uploadInput"
+        name="uploadInput"
         type="file"
     />
 </main>
 
 {#if files}
-	<h2>Selected files:</h2>
+	<h2>Datei:</h2>
 	{#each Array.from(files) as file}
 		<p>{file.name} ({file.size} bytes) </p>
 	{/each}
