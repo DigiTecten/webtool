@@ -11,7 +11,7 @@
 
 <main>
 	<h2>DigiTecten</h2>
-	<h1>Amazing Tagger Tool</h1>	
+	<h1>Amazing Tagger Tool - DigiDecten</h1>	
 	<div class="pure-g">
 		<div class="pure-u-1-3"></div>
 		<div class="pure-u-1-3">
@@ -19,7 +19,7 @@
 			<p>Laden Sie ihren Bauplan als PDF, markieren Sie ein Element und sehen Sie die dazugehörigen Elemente</p>
 			<button on:click={toggleStart}>Start</button>
 			{#if start}
-			<Upload/>
+				<Upload/>
 			{/if}
 		</div>
 		<div class="pure-u-1-3"></div>
@@ -32,7 +32,8 @@
 		padding: 1em;
 		/*max-width: 240px;*/
 		margin: 0 auto;
-		background-color: #dce5f1;
+		background-color: rgba(220, 229, 241, 0.95);
+		padding-bottom: 100px;
 	}
 	
 	h1 {
