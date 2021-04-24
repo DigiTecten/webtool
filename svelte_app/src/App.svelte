@@ -3,15 +3,15 @@
 	import Upload from './Upload.svelte';
 
 	function toggleStart() {
-    if (start != true) {
-      start = true;
-    }
-  }
+		if (start != true) {
+		start = true;
+		}
+  	}
 </script>
 
 <main>
 	<h2>DigiTecten</h2>
-	<h1>Amazing Tagger Tool - DigiDecten</h1>	
+	<h1>Amazing Tagger Tool</h1>	
 	<div class="pure-g">
 		<div class="pure-u-1-3"></div>
 		<div class="pure-u-1-3">

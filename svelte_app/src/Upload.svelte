@@ -10,6 +10,36 @@
 			console.log(`${file.name}: ${file.size} bytes`);
 		}
 	}
+	async function doPost () {
+		const res = await fetch('http://localhost:8080/postFile', {
+			method: 'POST',
+			body: JSON.stringify({
+				foo,
+				bar
+			})
+		})
+		
+		const json = await res.json()
+		result = JSON.stringify(json)
+		console.log('result:', result);
+	}
+
+	function upload() {
+		if (files) {
+			const formData = new FormData();
+			formData.append('dataFile', files);
+			const upload = fetch('http://localhost:8080/upload', {
+				method: 'POST',
+				body: formData
+			}).then((response) => response.json()).then((result) => {
+				console.log('Success:', result);
+			})
+			.catch((error) => {
+				console.error('Error:', error);
+			});
+		}
+    }
+	
 </script>
 <main>   
     <label for="uploadInput">Laden Sie ein Dokument (PDF, PNG):</label>
@@ -20,6 +50,7 @@
         name="uploadInput"
         type="file"
     />
+	<button on:click={upload}>Laden</button>
 </main>
 
 {#if files}
