@@ -20,12 +20,12 @@
 			{#if !start}
 				<button on:click={toggleStart}>Start</button>
 			{/if}			
-			{#if start}
-				<Upload/>
-			{/if}
 		</div>
 		<div class="pure-u-1-3"></div>
 	</div>
+	{#if start}
+		<Upload/>
+	{/if}
 </main>
 
 <style>
