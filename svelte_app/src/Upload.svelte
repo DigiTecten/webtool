@@ -35,7 +35,9 @@
 				body: formData
 			}).then((response) => response.json()).then((result) => {
 				console.log('Success:', result.message);
-				uploadFile = result.name.replace('.pdf', '.png');
+				setTimeout (function(){
+					uploadFile = result.name.replace('.pdf', '-1.png');
+				}, 2000);
 			})
 			.catch((error) => {
 				console.error('Error:', error);
@@ -66,5 +68,14 @@
 {/if}
 {#if uploadFile}
 	<p>Bauplan taggen:</p>
-	<img src="http://localhost:8080/static/{uploadFile}"/>
+	<div id="tagger">
+		<img src="http://localhost:8080/static/{uploadFile}"/>
+	</div>	
 {/if}
+<style>
+	#tagger {
+		width: 99%;
+		margin: 0;
+		overflow: auto;
+	}
+</style>
