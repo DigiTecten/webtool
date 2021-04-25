@@ -17,7 +17,9 @@
 		<div class="pure-u-1-3">
 			
 			<p>Laden Sie ihren Bauplan als PDF, markieren Sie ein Element und sehen Sie die dazugehörigen Elemente</p>
-			<button on:click={toggleStart}>Start</button>
+			{#if !start}
+				<button on:click={toggleStart}>Start</button>
+			{/if}			
 			{#if start}
 				<Upload/>
 			{/if}

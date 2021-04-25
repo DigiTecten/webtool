@@ -1,5 +1,7 @@
 <script>
-	let files;
+	import Tagger from './Tagger.svelte';
+	let files,
+		uploadFile;
 
 	$: if (files) {
 		// Note that `files` is of type `FileList`, not an Array:
@@ -32,7 +34,8 @@
 				method: 'POST',
 				body: formData
 			}).then((response) => response.json()).then((result) => {
-				console.log('Success:', result);
+				console.log('Success:', result.message);
+				uploadFile = result.name.replace('.pdf', '.png');
 			})
 			.catch((error) => {
 				console.error('Error:', error);
@@ -41,21 +44,27 @@
     }
 	
 </script>
-<main>   
-    <label for="uploadInput">Laden Sie ein Dokument (PDF, PNG):</label>
-    <input
-        accept="image/png,application/pdf"
-        bind:files
-        id="uploadInput"
-        name="uploadInput"
-        type="file"
-    />
-	<button on:click={upload}>Laden</button>
-</main>
+{#if !uploadFile}
+	<main>   
+		<label for="uploadInput">Laden Sie ein Dokument (PDF, PNG):</label>
+		<input
+			accept="image/png,application/pdf"
+			bind:files
+			id="uploadInput"
+			name="uploadInput"
+			type="file"
+		/>
+		<button on:click={upload}>Laden</button>
+	</main>
 
-{#if files}
-	<h2>Datei:</h2>
-	{#each Array.from(files) as file}
-		<p>{file.name} ({file.size} bytes) </p>
-	{/each}
+	{#if files}
+		<h2>Datei:</h2>
+		{#each Array.from(files) as file}
+			<p>{file.name} ({file.size} bytes) </p>
+		{/each}
+	{/if}
+{/if}
+{#if uploadFile}
+	<p>Bauplan taggen:</p>
+	<img src="http://localhost:8080/static/{uploadFile}"/>
 {/if}
