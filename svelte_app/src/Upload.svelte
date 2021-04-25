@@ -1,7 +1,8 @@
 <script>
 	import Tagger from './Tagger.svelte';
 	let files,
-		uploadFile;
+		uploadFile,
+		predictions;
 
 	$: if (files) {
 		// Note that `files` is of type `FileList`, not an Array:
@@ -35,6 +36,7 @@
 				body: formData
 			}).then((response) => response.json()).then((result) => {
 				console.log('Success:', result.message);
+				predictions = result.prediction;
 				setTimeout (function(){
 					uploadFile = result.name.replace('.pdf', '-1.png');
 				}, 2000);
@@ -70,6 +72,9 @@
 	<p>Bauplan taggen:</p>
 	<div id="tagger">
 		<img src="http://localhost:8080/static/{uploadFile}"/>
+		{#each predictions as prediction}
+			<div class="prediction" style="top: {prediction.top}px; left: {prediction.left}px; width: {prediction.left2-prediction.left}px; height: {prediction.top2 - prediction.top}px;"></div>
+		{/each}
 	</div>	
 {/if}
 <style>
@@ -77,5 +82,12 @@
 		width: 99%;
 		margin: 0;
 		overflow: auto;
+		position: relative;
+	}
+
+	.prediction {
+		z-index: 1;
+		background-color: rgba(255, 0, 0, 0.5);
+		position: absolute;
 	}
 </style>

@@ -18,6 +18,10 @@
     "svelte": "^3.0.0"
   },
   "dependencies": {
+    "@azure/cognitiveservices-customvision-prediction": "^5.1.2",
+    "@azure/cognitiveservices-customvision-training": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "sharp": "^0.28.1",
     "sirv-cli": "^1.0.0"
   }
 }
