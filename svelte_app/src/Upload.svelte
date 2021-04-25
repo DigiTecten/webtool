@@ -37,9 +37,7 @@
 			}).then((response) => response.json()).then((result) => {
 				console.log('Success:', result.message);
 				predictions = result.prediction;
-				setTimeout (function(){
-					uploadFile = result.name.replace('.pdf', '-1.png');
-				}, 2000);
+				uploadFile = result.name.replace('.pdf', '-1.png');
 			})
 			.catch((error) => {
 				console.error('Error:', error);
