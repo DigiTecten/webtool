@@ -27,7 +27,7 @@
 	function upload() {
 		if (files) {
 			const formData = new FormData();
-			formData.append('dataFile', files);
+			formData.append('dataFile', files.item(0));
 			const upload = fetch('http://localhost:8080/upload', {
 				method: 'POST',
 				body: formData
